@@ -21,6 +21,11 @@ class patientBusinessService {
                 return await patientsRepository.getAllPatients(pageNumber, pageSize);
             }
 
+            async deletePatientByGuid(patientGuid: string): Promise<any> {
+                const patientsRepository = new PatientsRepository();
+                return await patientsRepository.deletePatientByGuid(patientGuid);
+            }
+
 }
 
 export default patientBusinessService;

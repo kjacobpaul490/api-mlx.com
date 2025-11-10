@@ -24,5 +24,18 @@ class PatientController {
         const result = await patientServiceInstance.getAllPatients(pageNumber, pageSize);
         return res.json({ result });
     }
+
+    async deletePatientByGuid (req: Request, res: Response, next: NextFunction): Promise<any> {   
+         debugger
+        const patientServiceInstance = new patientBusinessService();
+        const { patientGuid } = req.params;
+        
+        if (!patientGuid) {
+            return Promise.reject(new Error("patientGuid parameter is required"));
+        }
+        
+        await patientServiceInstance.deletePatientByGuid(patientGuid);
+        return res.json({ message: "Patient deleted successfully", patientGuid });
+    }
 }
 export default new PatientController();

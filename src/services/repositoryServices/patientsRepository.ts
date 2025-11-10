@@ -48,6 +48,18 @@ class PatientsRepository {
     
         }
 
+        async deletePatientByGuid(patientGuid: string): Promise<any> {
+            try {
+                const pool = await getMSSQLConnection();
+                const request = pool.request();
+                
+                const result = await request.query( `exec [patient].[spDeletePatientByGuid] @patient_guid='${patientGuid}'`);
+
+                return result.recordset;
+            } catch (error) {
+                return Promise.reject(error);
+            }
+        }
 }
 
 export default PatientsRepository;
