@@ -1,6 +1,14 @@
+import PhysicianMapper from "../../helpers/mapper/physicianMapper.js";
 import { getMSSQLConnection } from "../../helpers/mssql.js";
 
 class PhysicianRepository {
+
+    private physicianMapper: PhysicianMapper;
+
+    constructor(){
+        this.physicianMapper = new PhysicianMapper();
+    }
+
     // Implementation of PatientsRepository methods
     /**
          * 
@@ -31,7 +39,7 @@ class PhysicianRepository {
         
                     const result = await request.query( `exec [physician].[spGetAllphysicians] @pageNumber = '${pageNumber}',@pageSize = '${pageSize}'`);
         
-                    return result.recordset;
+                    return result.recordset.map((record: any)=> this.physicianMapper.mapToPhysician(record));
         
                 } catch (error) {
                     return Promise.reject(error);
