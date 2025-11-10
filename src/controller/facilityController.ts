@@ -1,7 +1,7 @@
 import express, {type Request, type Response } from 'express';
 import FacilityBusinessService from "../services/bussinessServices/facilityBusinessService.js";
 
-class FaccilityController {
+class FacilityController {
     async getFacilityByGuid (req: Request, res: Response): Promise<any> {   
         const facilityBusinessService = new FacilityBusinessService();
         const { facility_guid } = req.params;
@@ -19,6 +19,12 @@ class FaccilityController {
         const result = await facilityBusinessService.getAllfacilities(pageNumber, pageSize);
         return res.json({ result });
     }
+    async createFacility(req: Request, res: Response): Promise<any> {
+        const facilityBusinessService = new FacilityBusinessService();
+        const facility = req.body;
+        const result = await facilityBusinessService.createFacility(facility);
+        return res.json({ result });
+    }
 }
 
-export default new FaccilityController;
+export default new FacilityController;

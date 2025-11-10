@@ -1,10 +1,10 @@
 import express from 'express';
-import FaccilityController from '../controller/facilityController.js';
+import FacilityController from '../controller/facilityController.js';
 
 const router = express.Router();
 
-router.get('/getFacilityByGuid/:facility_guid', FaccilityController.getFacilityByGuid);
-router.get('/getAllfacilities/:pageNumber/:pageSize', FaccilityController.getAllfacilities);
-
+router.get('/getFacilityByGuid/:facility_guid', FacilityController.getFacilityByGuid);
+router.get('/getAllfacilities/:pageNumber/:pageSize', FacilityController.getAllfacilities);
+router.post('/createFacility', FacilityController.createFacility);
 
 export default router;
