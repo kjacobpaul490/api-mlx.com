@@ -1,7 +1,14 @@
+import FacilityMapper from "../../helpers/mapper/facilityMapper.js";
 import { getMSSQLConnection } from "../../helpers/mssql.js";
 
 
-class FacilityRepository    {   
+class FacilityRepository    {  
+    
+    private facilityMapper: FacilityMapper;
+
+    constructor (){
+        this.facilityMapper = new FacilityMapper();
+    }
      
     // Implementation of FacilityRepository methods
     /**
@@ -31,7 +38,8 @@ class FacilityRepository    {
             const request = pool.request();
 
             const result = await request.query(`exec [facility].[spGetAllfacilities] @PageNumber='${pageNumber}',@PageSize='${PageSize}'`);
-            return result.recordset;
+            return result.recordset.map((record: any)=> this.facilityMapper.mapToFacility(record));
+            
             } catch (error){
                 return Promise.reject(error);
             }
