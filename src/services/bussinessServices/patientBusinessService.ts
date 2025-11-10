@@ -9,6 +9,16 @@ class patientBusinessService {
                 const patientsRepository = new PatientsRepository();
                 return await patientsRepository.getPatientByGuid(patientGuid);
             }
+            /**
+             * 
+             * @param pageNumber    
+             * @param pageSize 
+             * @returns 
+             */
+            async getAllPatients(pageNumber: number,pageSize:number): Promise<any> {
+                const patientsRepository = new PatientsRepository();
+                return await patientsRepository.getAllPatients(pageNumber, pageSize);
+            }
 
 }
 

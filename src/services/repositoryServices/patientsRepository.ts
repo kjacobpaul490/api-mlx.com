@@ -24,6 +24,22 @@ class PatientsRepository {
     
         }
 
+        async getAllPatients(pageNumber: number,pageSize:number): Promise<any> {
+            try {
+                const pool = await getMSSQLConnection();
+                const request = pool.request();
+                // Add your SQL query and parameters here
+    
+                const result = await request.query( `exec [patient].[spGetAllPatients] @PageNumber=${pageNumber},@PageSize=${pageSize}`);
+    
+                return result.recordset;
+    
+            } catch (error) {
+                return Promise.reject(error);
+            }
+    
+        }
+
 }
 
 export default PatientsRepository;
