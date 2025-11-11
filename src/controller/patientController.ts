@@ -38,7 +38,6 @@ class PatientController {
     }
 
     async createPatient(req: Request, res: Response): Promise<any> {
-        debugger;
         const patientServiceInstance = new patientBusinessService();
         const patient = req.body;
         const result = await patientServiceInstance.createPatient(patient);

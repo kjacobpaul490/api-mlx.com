@@ -22,5 +22,12 @@ class PhysicianController {
         const result = await physicianBusinessService.getAllphysicians(pageNumber, pageSize);
         return res.json({ result });
     }
+
+    async createPhysician (req: Request, res: Response): Promise<any> {
+        const physicianBusinessService = new PhysicianBusinessService();
+        const physician = req.body;
+        const result = await physicianBusinessService.createPhysician(physician);
+        return res.json({ result });
+    }
 }
 export default new PhysicianController;
