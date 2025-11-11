@@ -5,5 +5,6 @@ const router = express.Router();
 
 router.get('/getPhysicianByGuid/:physicianGuid', PhysicianController.getPhysicianByGuid);
 router.get('/getAllphysicians/:pageNumber/:pageSize', PhysicianController.getAllphysicians);
+router.post('/createPhysician', PhysicianController.createPhysician);
 
 export default router;
