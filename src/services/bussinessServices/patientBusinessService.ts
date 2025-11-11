@@ -26,6 +26,11 @@ class patientBusinessService {
                 return await patientsRepository.deletePatientByGuid(patientGuid);
             }
 
+            async createPatient(patient: Patient): Promise<any> {
+                const patientsRepository = new PatientsRepository();
+                return await patientsRepository.createPatient(patient);
+            }
+
 }
 
 export default patientBusinessService;

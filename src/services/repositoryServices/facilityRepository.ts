@@ -45,6 +45,7 @@ class FacilityRepository {
             return Promise.reject(error);
         }
     }
+    
     async createFacility(facility: Facility): Promise<any> {
         try {
             const pool = await getMSSQLConnection();
@@ -73,9 +74,6 @@ class FacilityRepository {
         } catch (error) {
             return Promise.reject(error);
         }
-
-
-
     }
 }
 
