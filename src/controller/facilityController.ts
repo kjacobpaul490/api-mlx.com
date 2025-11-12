@@ -29,6 +29,7 @@ class FacilityController {
     }
 
     async deleteFacilityByGuid(req: Request, res: Response): Promise<any> {
+        debugger;
         const facilityBusinessService = new FacilityBusinessService();
         const { facilityGuid } = req.params;
 

@@ -78,6 +78,19 @@ class PhysicianRepository {
              }         
         }
 
+        async deletePhysicianByGuid(physicianGuid: string): Promise<any> {
+            try {
+                const pool = await getMSSQLConnection();
+                const request = pool.request();
+                
+                const result = await request.query( `exec [physician].[spDeletePhysicianByGuid] @physician_guid='${physicianGuid}'`);
+    
+                return result.recordset;
+            } catch (error) {
+                return Promise.reject(error);
+            }
+        }
+
 }
 
 export default PhysicianRepository;
