@@ -12,10 +12,13 @@ class FacilityBusinessService {
           const facilityRepository = new FacilityRepository();
           return await facilityRepository.getAllfacilities(pageNumber, PageSize);
      }
+
      async createFacility(facility: Facility): Promise<any> {
           const facilityRepository = new FacilityRepository();
           return await facilityRepository.createFacility(facility);
      }
+
+     
 }
 
 export default FacilityBusinessService;

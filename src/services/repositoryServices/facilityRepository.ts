@@ -75,6 +75,19 @@ class FacilityRepository {
             return Promise.reject(error);
         }
     }
+
+    async deleteFacilityByGuid(facilityGuid: string): Promise<any> {
+        try {
+            const pool = await getMSSQLConnection();
+            const request = pool.request();
+            
+            const result = await request.query( `exec [facility].[spDeleteFacilityByGuid] @facility_guid='${facilityGuid}'`);
+
+            return result.recordset;
+        } catch (error) {
+            return Promise.reject(error);
+        }
+    }
 }
 
 export default FacilityRepository;
