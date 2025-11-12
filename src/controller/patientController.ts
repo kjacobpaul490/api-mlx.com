@@ -25,7 +25,7 @@ class PatientController {
         return res.json({ result });
     }
 
-    async deletePatientByGuid(req: Request, res: Response, next: NextFunction): Promise<any> {
+    async deletePatientByGuid(req: Request, res: Response): Promise<any> {
         const patientServiceInstance = new patientBusinessService();
         const { patientGuid } = req.params;
 

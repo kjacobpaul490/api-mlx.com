@@ -2,6 +2,7 @@ import express, {type Request, type Response } from 'express';
 import FacilityBusinessService from "../services/bussinessServices/facilityBusinessService.js";
 
 class FacilityController {
+
     async getFacilityByGuid (req: Request, res: Response): Promise<any> {   
         const facilityBusinessService = new FacilityBusinessService();
         const { facility_guid } = req.params;
@@ -19,11 +20,24 @@ class FacilityController {
         const result = await facilityBusinessService.getAllfacilities(pageNumber, pageSize);
         return res.json({ result });
     }
+
     async createFacility(req: Request, res: Response): Promise<any> {
         const facilityBusinessService = new FacilityBusinessService();
         const facility = req.body;
         const result = await facilityBusinessService.createFacility(facility);
         return res.json({ result });
+    }
+
+    async deleteFacilityByGuid(req: Request, res: Response): Promise<any> {
+        const facilityBusinessService = new FacilityBusinessService();
+        const { facilityGuid } = req.params;
+
+        if (!facilityGuid) {
+            return Promise.reject(new Error("facilityGuid parameter is required"));
+        }
+
+        await facilityBusinessService.deleteFacilityByGuid(facilityGuid);
+        return res.json({ message: "Facility deleted successfully", facilityGuid });
     }
 }
 
