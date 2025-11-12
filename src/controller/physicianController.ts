@@ -29,5 +29,17 @@ class PhysicianController {
         const result = await physicianBusinessService.createPhysician(physician);
         return res.json({ result });
     }
+
+    async deletePhysicianByGuid(req: Request, res: Response): Promise<any> {
+        const physicianBusinessService = new PhysicianBusinessService();
+        const { physicianGuid } = req.params;
+
+        if (!physicianGuid) {
+            return Promise.reject(new Error("physicianGuid parameter is required"));
+        }
+
+        await physicianBusinessService.deletePhysicianByGuid(physicianGuid);
+        return res.json({ message: "Physician deleted successfully", physicianGuid });
+    }
 }
 export default new PhysicianController;
