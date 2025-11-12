@@ -17,6 +17,12 @@ class PhysicianBusinessService {
                 return await physicianRepository.createPhysician(physician);
 
             }
+
+            async deletePhysicianByGuid (physicianGuid: string): Promise<any> { 
+                const physicianRepository = new PhysicianRepository();
+                return await physicianRepository.deletePhysicianByGuid(physicianGuid);
+            }
+
 }
 
 export default PhysicianBusinessService;
