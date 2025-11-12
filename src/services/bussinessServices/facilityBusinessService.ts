@@ -17,7 +17,11 @@ class FacilityBusinessService {
           const facilityRepository = new FacilityRepository();
           return await facilityRepository.createFacility(facility);
      }
-
+     
+     async deleteFacilityByGuid(facilityGuid: string): Promise<any> { 
+          const facilityRepository = new FacilityRepository(); 
+          return await facilityRepository.deleteFacilityByGuid(facilityGuid); 
+     }
      
 }
 
