@@ -2,7 +2,7 @@
  * Patient entity representing a single patient record.
  */
 export interface Patient {
-    
+
     Guid: string;                       // Unique patient identifier
 
     // Basic personal information
