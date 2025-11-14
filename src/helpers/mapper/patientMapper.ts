@@ -1,7 +1,13 @@
 import type { Patient } from "../../models/paitent.js";
 
 class PatientMapper {
-mapToPatient(dbRecord: any): Patient {
+
+    /**
+     * Maps a raw database record to a Patient model
+     * @param dbRecord Row returned from SQL query
+     * @returns Patient object with properly formatted fields
+     */
+    mapToPatient(dbRecord: any): Patient {
         return {
             Guid: dbRecord.guid,
             FirstName: dbRecord.first_name,
