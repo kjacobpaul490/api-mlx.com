@@ -2,6 +2,7 @@
  * Facility entity representing a single facility record.
  */
 export interface Facility {
+    
     Guid: string;                 // Unique ID
     Name: string;
     MobileNumber: string;
