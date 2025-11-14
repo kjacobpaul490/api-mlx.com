@@ -1,10 +1,14 @@
 import express, { type NextFunction, type Request, type Response } from 'express';
 import patientBusinessService from '../services/bussinessServices/patientBusinessService.js';
 
-
-
 class PatientController {
-    // Method to get patient details
+
+    /**
+     * Fetch a patient by their GUID
+     * @param req Express request object
+     * @param res Express response object
+     * @param next Express next function
+     */
     async getPatientByGuid(req: Request, res: Response, next: NextFunction): Promise<any> {
 
         const patientServiceInstance = new patientBusinessService();
@@ -16,6 +20,12 @@ class PatientController {
         return res.json({ result });
     }
 
+    /**
+     * Fetch paginated list of patients
+     * @param req Express request object (expects pageNumber & pageSize)
+     * @param res Express response object
+     * @param next Express next function
+     */
     async getAllPatients(req: Request, res: Response, next: NextFunction): Promise<any> {
 
         const patientServiceInstance = new patientBusinessService();
@@ -25,6 +35,11 @@ class PatientController {
         return res.json({ result });
     }
 
+    /**
+     * Delete a patient by their GUID
+     * @param req Express request object
+     * @param res Express response object
+     */
     async deletePatientByGuid(req: Request, res: Response): Promise<any> {
         const patientServiceInstance = new patientBusinessService();
         const { patientGuid } = req.params;
@@ -37,6 +52,11 @@ class PatientController {
         return res.json({ message: "Patient deleted successfully", patientGuid });
     }
 
+    /**
+     * Create a new patient record
+     * @param req Express request object containing patient data
+     * @param res Express response object
+     */
     async createPatient(req: Request, res: Response): Promise<any> {
         const patientServiceInstance = new patientBusinessService();
         const patient = req.body;
