@@ -1,6 +1,12 @@
 import type { Physician } from "../../models/physician.js";
 
 class PhysicianMapper {
+
+    /**
+     * Maps a raw database row to a Physician domain model.
+     * @param dbRecord - The record returned from the database query.
+     * @returns A fully structured Physician object.
+     */
     mapToPhysician(dbRecord: any): Physician {
         return {
             Guid: dbRecord.guid,
