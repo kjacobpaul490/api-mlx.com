@@ -3,6 +3,10 @@ import type { config as MSSQLConfig, ConnectionPool } from 'mssql';
 
 let pool: sql.ConnectionPool | null = null;
 
+/**
+ * Retrieves MSSQL database configuration from environment variables.
+ * @returns MSSQL config object used for establishing a connection.
+ */
 function getDbConfig(): MSSQLConfig {
     return {
         user: process.env.DB_USER || '',
@@ -16,6 +20,12 @@ function getDbConfig(): MSSQLConfig {
     };
 }
 
+/**
+ * Provides a shared MSSQL connection pool instance.
+ * Reuses an active pool if available, otherwise creates a new one.
+ *
+ * @returns Active SQL ConnectionPool instance.
+ */
 export async function getMSSQLConnection(): Promise<sql.ConnectionPool> {
     if (pool && pool.connected) {
         return pool;
