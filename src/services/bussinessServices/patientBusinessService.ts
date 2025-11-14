@@ -2,37 +2,34 @@ import type { Patient } from "../../models/paitent.js";
 import PatientsRepository from "../repositoryServices/patientsRepository.js";
 
 class patientBusinessService {
-    // Business logic methods for patient services will go here
 
-            async getPatientByGuid(patientGuid: string): Promise<any> {
-                // Business logic can be added here if needed
+    // Fetch a single patient by GUID
+    async getPatientByGuid(patientGuid: string): Promise<any> {
+        const patientsRepository = new PatientsRepository();
+        return await patientsRepository.getPatientByGuid(patientGuid);
+    }
 
-                const patientsRepository = new PatientsRepository();
-                return await patientsRepository.getPatientByGuid(patientGuid);
-            }
-            /**
-             * 
-             * @param pageNumber    
-             * @param pageSize 
-             * @returns 
-             */
-            async getAllPatients(pageNumber: number,pageSize:number): Promise<Patient[]> {
-                const patientsRepository = new PatientsRepository();
-                return await patientsRepository.getAllPatients(pageNumber, pageSize);
-            }
+    /**
+     * Fetch paginated list of patients
+     * @param pageNumber Current page number
+     * @param pageSize   Number of records per page
+     */
+    async getAllPatients(pageNumber: number, pageSize: number): Promise<Patient[]> {
+        const patientsRepository = new PatientsRepository();
+        return await patientsRepository.getAllPatients(pageNumber, pageSize);
+    }
 
-            
-                 
-            async deletePatientByGuid(patientGuid: string): Promise<any> {
-                const patientsRepository = new PatientsRepository();
-                return await patientsRepository.deletePatientByGuid(patientGuid);
-            }
+    // Remove a patient using GUID
+    async deletePatientByGuid(patientGuid: string): Promise<any> {
+        const patientsRepository = new PatientsRepository();
+        return await patientsRepository.deletePatientByGuid(patientGuid);
+    }
 
-            async createPatient(patient: Patient): Promise<any> {
-                const patientsRepository = new PatientsRepository();
-                return await patientsRepository.createPatient(patient);
-            }
-
+    // Create a new patient record
+    async createPatient(patient: Patient): Promise<any> {
+        const patientsRepository = new PatientsRepository();
+        return await patientsRepository.createPatient(patient);
+    }
 }
 
 export default patientBusinessService;
