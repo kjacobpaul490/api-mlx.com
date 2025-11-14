@@ -2,12 +2,10 @@ import FacilityMapper from "../../helpers/mapper/facilityMapper.js";
 import { getMSSQLConnection } from "../../helpers/mssql.js";
 import type { Facility } from "../../models/facility.js";
 
-class FacilityRepository 
-{
+class FacilityRepository {
     private facilityMapper: FacilityMapper;
 
-    constructor() 
-    {
+    constructor() {
         this.facilityMapper = new FacilityMapper();
     }
 
@@ -17,10 +15,8 @@ class FacilityRepository
      * @param facilityGuid - Unique identifier of the facility.
      * @returns Promise resolving with the facility data.
      */
-    async getFacilityByGuid(facilityGuid: string): Promise<any> 
-    {
-        try 
-        {
+    async getFacilityByGuid(facilityGuid: string): Promise<any> {
+        try {
             const pool = await getMSSQLConnection();
             const request = pool.request();
 
@@ -28,8 +24,7 @@ class FacilityRepository
 
             return result.recordset;
 
-        } catch (error) 
-        {
+        } catch (error) {
             return Promise.reject(error);
         }
     }
@@ -41,19 +36,16 @@ class FacilityRepository
      * @param PageSize - Number of records per page.
      * @returns Promise resolving with a list of facilities.
      */
-    async getAllfacilities(pageNumber: number, PageSize: number): Promise<Facility[]> 
-    {
-        try 
-        {
+    async getAllfacilities(pageNumber: number, PageSize: number): Promise<Facility[]> {
+        try {
             const pool = await getMSSQLConnection();
             const request = pool.request();
 
             const result = await request.query(`exec [facility].[spGetAllfacilities] @PageNumber='${pageNumber}',@PageSize='${PageSize}'`);
-            
+
             return result.recordset.map((record: any) => this.facilityMapper.mapToFacility(record));
 
-        } catch (error) 
-        {
+        } catch (error) {
             return Promise.reject(error);
         }
     }
@@ -64,10 +56,8 @@ class FacilityRepository
      * @param facility - Facility object containing all required fields.
      * @returns Promise resolving with the created facility record.
      */
-    async createFacility(facility: Facility): Promise<any> 
-    {
-        try 
-        {
+    async createFacility(facility: Facility): Promise<any> {
+        try {
             const pool = await getMSSQLConnection();
             const request = pool.request();
 
@@ -93,8 +83,7 @@ class FacilityRepository
 
             return result.recordset;
 
-        } catch (error) 
-        {
+        } catch (error) {
             return Promise.reject(error);
         }
     }
@@ -105,18 +94,15 @@ class FacilityRepository
     * @param facilityGuid - Unique identifier of the facility to delete.
     * @returns Promise resolving when deletion is successful.
     */
-    async deleteFacilityByGuid(facilityGuid: string): Promise<any> 
-    {
-        try 
-        {
+    async deleteFacilityByGuid(facilityGuid: string): Promise<any> {
+        try {
             const pool = await getMSSQLConnection();
             const request = pool.request();
 
             const result = await request.query(`exec [facility].[spDeleteFacilityByGuid] @facility_guid='${facilityGuid}'`);
             return result.recordset;
 
-        } catch (error) 
-        {
+        } catch (error) {
             return Promise.reject(error);
         }
     }
