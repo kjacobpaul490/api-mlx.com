@@ -1,26 +1,24 @@
 /**
- * Facility entity representing a single facility record.
+ * Physician entity representing provider details.
  */
-export interface Facility {
-    
-    Guid: string;                 // Unique ID
+export interface Physician {
+
+    Guid: string;                         // Unique physician identifier
+    Npi: string;                          // National Provider Identifier (NPI)
     Name: string;
-    MobileNumber: string;
-    AlternativeMobileNumber: string | null;
-    AddressLine1: string;
-    AddressLine2: string | null;
-    City: string;
-    State: string;
-    Zipcode: string;
-    Country: string;
-    Email: string;
-    FaxNumber: string | null;
 
-    // Details of the facility's primary point of contact
-    PrimaryInchargeName: string;
-    PrimaryInchargeMobileNumber: string;
-    PrimaryInchargeDesignation: string | null;
+    // Contact information
+    PhoneNumber: string;
+    AlternativePhoneNumber: string | null;
 
-    IsActive: boolean;            // Whether the facility is active
-    ResultCommunicationMethod: string; // Email/SMS/Portal, etc.
+    EnumerationDate: Date;                     // Date when NPI was assigned
+    NpiType: string;                           // Type 1 (Individual) / Type 2 (Organization)
+    IsSoleProprietor: boolean;                 // Whether provider is a sole proprietor
+
+    IsActive: boolean;                         // Active/inactive status
+
+    // Practice location details
+    MailingAddress: string;
+    PrimaryPracticeAddress: string;
+    SecondaryPracticeAddress: string | null;
 }
