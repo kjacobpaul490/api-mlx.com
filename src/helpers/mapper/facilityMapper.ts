@@ -1,6 +1,12 @@
 import type { Facility } from "../../models/facility.js";
 
 class FacilityMapper {
+    
+     /**
+     * Map a database record to a Facility model
+     * @param dbRecord Raw database row returned from SQL
+     * @returns A strongly typed Facility object
+     */
     mapToFacility(dbRecord: any): Facility {
         return {
             Guid: dbRecord.guid,
