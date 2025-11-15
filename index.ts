@@ -1,5 +1,7 @@
 import dotenv from 'dotenv';
 import express from 'express';
+import swaggerUi from 'swagger-ui-express';
+import { swaggerSpec } from './src/swagger/swagger.js';
 
 import mathRoutes from './src/routes/mathRoutes.js';
 import ordersRoutes from './src/routes/ordersRoute.js';
@@ -14,6 +16,9 @@ const app = express();
 const port = 3000;
 
 app.use(express.json());
+
+// Swagger UI setup
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 /**
  * Math routes
