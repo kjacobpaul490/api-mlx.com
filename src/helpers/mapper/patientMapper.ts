@@ -14,7 +14,7 @@ class PatientMapper {
             MiddleName: dbRecord.middle_name || null,
             LastName: dbRecord.last_name,
             Gender: dbRecord.gender,
-            Dob: new Date(dbRecord.dob),
+            Dob: new Date(dbRecord.Dob),
             MobileNumber: dbRecord.mobile_number,
             AlternativeMobileNumber: dbRecord.alternative_mobile_number || null,
             Email: dbRecord.email,

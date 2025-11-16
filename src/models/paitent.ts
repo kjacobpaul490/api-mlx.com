@@ -10,7 +10,7 @@ export interface Patient {
     MiddleName: string | null;
     LastName: string;
     Gender: string;
-    Dob: Date;
+    Dob: Date|null;
 
     // Contact details
     MobileNumber: string;

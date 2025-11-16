@@ -1,6 +1,7 @@
 import { getMSSQLConnection } from "../../helpers/mssql.js";
 import type { Patient } from "../../models/paitent.js";
 import PatientMapper from "../../helpers/mapper/patientMapper.js";
+import sql from 'mssql';
 
 class PatientsRepository {
     private patientMapper: PatientMapper;
@@ -82,27 +83,48 @@ class PatientsRepository {
             const pool = await getMSSQLConnection();
             const request = pool.request();
 
+            // Add parameters using proper parameterized queries
+            request.input('first_name', patient.FirstName);
+            request.input('middle_name', patient.MiddleName);
+            request.input('last_name', patient.LastName);
+            request.input('gender', patient.Gender);
+            request.input('dob', sql.Date, patient.Dob);
+            request.input('mobile_number', patient.MobileNumber);
+            request.input('alternative_mobile_number', patient.AlternativeMobileNumber);
+            request.input('email', patient.Email);
+            request.input('address_line1', patient.AddressLine1);
+            request.input('address_line2', patient.AddressLine2);
+            request.input('city', patient.City);
+            request.input('state', patient.State);
+            request.input('zipcode', patient.Zipcode);
+            request.input('country', patient.Country);
+            request.input('race', patient.Race);
+            request.input('ethnicity', patient.Ethnicity);
+            request.input('is_homebound_patient', patient.IsHomeboundPatient);
+            request.input('is_hard_stick', patient.IsHardStick);
+            request.input('patient_notes', patient.PatientNotes);
+
             const result = await request.query(`
                 exec [patient].[spCreatePatient] 
-                    @first_name = '${patient.FirstName}',
-                    @middle_name = '${patient.MiddleName}',
-                    @last_name = '${patient.LastName}',
-                    @gender = '${patient.Gender}',
-                    @dob = '${patient.Dob}',
-                    @mobile_number = '${patient.MobileNumber}',
-                    @alternative_mobile_number = '${patient.AlternativeMobileNumber}',
-                    @email = '${patient.Email}',
-                    @address_line1 = '${patient.AddressLine1}',
-                    @address_line2 = '${patient.AddressLine2}',
-                    @city = '${patient.City}',
-                    @state = '${patient.State}',
-                    @zipcode = '${patient.Zipcode}',
-                    @country = '${patient.Country}',
-                    @race = '${patient.Race}',
-                    @ethnicity = '${patient.Ethnicity}',
-                    @is_homebound_patient = '${patient.IsHomeboundPatient}',
-                    @is_hard_stick = '${patient.IsHardStick}',
-                    @patient_notes = '${patient.PatientNotes}'
+                    @first_name = @first_name,
+                    @middle_name = @middle_name,
+                    @last_name = @last_name,
+                    @gender = @gender,
+                    @dob = @dob,
+                    @mobile_number = @mobile_number,
+                    @alternative_mobile_number = @alternative_mobile_number,
+                    @email = @email,
+                    @address_line1 = @address_line1,
+                    @address_line2 = @address_line2,
+                    @city = @city,
+                    @state = @state,
+                    @zipcode = @zipcode,
+                    @country = @country,
+                    @race = @race,
+                    @ethnicity = @ethnicity,
+                    @is_homebound_patient = @is_homebound_patient,
+                    @is_hard_stick = @is_hard_stick,
+                    @patient_notes = @patient_notes
             `);
 
             return result.recordset;

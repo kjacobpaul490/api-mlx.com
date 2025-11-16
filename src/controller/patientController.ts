@@ -1,7 +1,17 @@
 import express, { type NextFunction, type Request, type Response } from 'express';
 import patientBusinessService from '../services/bussinessServices/patientBusinessService.js';
+import PatientMapper from '../helpers/mapper/patientMapper.js';
 
 class PatientController {
+    private patientMapper: PatientMapper = new PatientMapper();
+
+    constructor() {
+        // Bind methods to preserve 'this' context
+        this.getPatientByGuid = this.getPatientByGuid.bind(this);
+        this.getAllPatients = this.getAllPatients.bind(this);
+        this.deletePatientByGuid = this.deletePatientByGuid.bind(this);
+        this.createPatient = this.createPatient.bind(this);
+    }
 
     /**
      * Fetch a patient by their GUID
