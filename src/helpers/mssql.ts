@@ -14,8 +14,9 @@ function getDbConfig(): MSSQLConfig {
         server: process.env.DB_SERVER || '',
         database: process.env.DB_NAME || '',
         options: {
-            encrypt: true, // For Azure
-            trustServerCertificate: true, // Change to false for production
+            encrypt: false, // Set to true for Azure with proper hostname
+            trustServerCertificate: true,
+            enableArithAbort: true,
         },
     };
 }

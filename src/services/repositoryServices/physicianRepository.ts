@@ -23,7 +23,7 @@ class PhysicianRepository {
 
             const result = await request.query(`exec [physician].[spGetphysicianByGuid] @physician_guid='${physicianGuid}'`);
 
-            return result.recordset;
+            return result.recordset.map((record: any) => this.physicianMapper.mapToPhysician(record));
 
         } catch (error) {
             return Promise.reject(error);

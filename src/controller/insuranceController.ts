@@ -31,6 +31,9 @@ async getAllInsurances(req: Request, res: Response, next: NextFunction): Promise
     }
   }
 
+
+  
+
 }
 
 

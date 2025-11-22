@@ -40,6 +40,7 @@ class FacilityController {
      * @param res Express response object
      */
     async createFacility(req: Request, res: Response): Promise<any> {
+        debugger;
         const facilityBusinessService = new FacilityBusinessService();
         const facility = req.body;
         

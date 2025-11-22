@@ -40,6 +40,7 @@ class PhysicianController {
      * @param res Express response object
      */
     async createPhysician(req: Request, res: Response): Promise<any> {
+        
         const physicianBusinessService = new PhysicianBusinessService();
         const physician = req.body;
 
