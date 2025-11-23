@@ -39,12 +39,12 @@ class PhysicianController {
      * @param req Express request object containing physician data
      * @param res Express response object
      */
-    async createPhysician(req: Request, res: Response): Promise<any> {
+    async createOrUpdatePhysician(req: Request, res: Response): Promise<any> {
         
         const physicianBusinessService = new PhysicianBusinessService();
         const physician = req.body;
 
-        const result = await physicianBusinessService.createPhysician(physician);
+        const result = await physicianBusinessService.createOrUpdatePhysician(physician);
         return res.json({ result });
     }
 

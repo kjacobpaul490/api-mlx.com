@@ -81,7 +81,7 @@ router.get('/getAllphysicians', PhysicianController.getAllphysicians);
  *       201:
  *         description: Physician created successfully
  */
-router.post('/createPhysician', PhysicianController.createPhysician);
+router.post('/createOrUpdatePhysician', PhysicianController.createOrUpdatePhysician);
 
 /**
  * @swagger

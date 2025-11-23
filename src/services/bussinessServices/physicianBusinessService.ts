@@ -33,9 +33,9 @@ class PhysicianBusinessService {
      * @param physician Physician object containing the data to be saved
      * @returns Result of insert operation
      */
-    async createPhysician(physician: Physician): Promise<any> {
+    async createOrUpdatePhysician(physician: Physician): Promise<any> {
         const physicianRepository = new PhysicianRepository();
-        return await physicianRepository.createPhysician(physician);
+        return await physicianRepository.createOrUpdatePhysician(physician);
 
     }
 

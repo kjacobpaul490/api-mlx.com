@@ -52,40 +52,34 @@ class PhysicianRepository {
 
     }
 
-    /**
-     * Creates a new physician record in the database.
-     * 
-     * @param physician - Physician object with required fields.
-     * @returns Promise resolving with created physician record.
-     */
-    async createPhysician(physician: Physician): Promise<any> {
+    async createOrUpdatePhysician(physician: Physician): Promise<any> 
+    {
         try {
             const pool = await getMSSQLConnection();
             const request = pool.request();
-
-            const result = await request.query
-                (`
-                    exec
-                    [physician].[spCreatePhysician] 
-                        @npi = '${physician.Npi}',
-                        @name = '${physician.Name}',
-                        @phone_number = '${physician.PhoneNumber}',
-                        @alternative_phone_number = '${physician.AlternativePhoneNumber}',
-                        @enumeration_date = '${physician.EnumerationDate}',
-                        @npiType = '${physician.NpiType}',
-                        @is_sole_proprietor = '${physician.IsSoleProprietor}',
-                        @is_active = '${physician.IsActive}',
-                        @mailing_address = '${physician.MailingAddress}',
-                        @primary_practice_address = '${physician.PrimaryPracticeAddress}',
-                        @secondary_practice_address = '${physician.SecondaryPracticeAddress}'`
-                );
-
+    
+            const result = await request.query(`
+                exec [physician].[spCreatePhysician]
+                    @guid = ${physician.Guid ? `'${physician.Guid}'` : 'NULL'},
+                    @npi = '${physician.Npi}',
+                    @name = '${physician.Name}',
+                    @phone_number = '${physician.PhoneNumber}',
+                    @alternative_phone_number = '${physician.AlternativePhoneNumber}',
+                    @enumeration_date = '${physician.EnumerationDate}',
+                    @npiType = '${physician.NpiType}',
+                    @is_sole_proprietor = '${physician.IsSoleProprietor}',
+                    @is_active = '${physician.IsActive}',
+                    @mailing_address = '${physician.MailingAddress}',
+                    @primary_practice_address = '${physician.PrimaryPracticeAddress}',
+                    @secondary_practice_address = '${physician.SecondaryPracticeAddress}'
+            `);
+    
             return result.recordset;
-
         } catch (error) {
             return Promise.reject(error);
         }
     }
+    
 
     /**
      * Deletes a physician record based on GUID.
