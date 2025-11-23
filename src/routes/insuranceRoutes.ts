@@ -52,4 +52,4 @@ insuranceRoutes.get('/getinsuranceByGuid/:orderGuid', insuranceController.getins
  */
 insuranceRoutes.get('/getAllInsurances', insuranceController.getAllInsurances);
 
-export default insuranceRouter;
+export default insuranceRoutes;
