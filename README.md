@@ -3,7 +3,7 @@
 
 ---
 
-## 📋 PROJECT OVERVIEW
+##  PROJECT OVERVIEW
 
 **Project Name:** ylims.ms.webapi (Yodha LIMS Microservice Web API)  
 **Framework:** ASP.NET Core 6.0  
@@ -12,7 +12,7 @@
 
 ---
 
-## 🏗️ PROJECT STRUCTURE
+##  PROJECT STRUCTURE
 
 ### Four Main Projects:
 
@@ -61,7 +61,7 @@ ylims.ms.webapi.repository/
 
 ---
 
-## 🎯 DESIGN PATTERNS USED
+##  DESIGN PATTERNS USED
 
 ### 1. **CQRS (Command Query Responsibility Segregation)**
    - **Location:** Handler/ folder separation, Services/ separation, Repository/ separation
@@ -173,7 +173,7 @@ ylims.ms.webapi.repository/
 
 ---
 
-## 📁 KEY PROJECTS & FILES
+##  KEY PROJECTS & FILES
 
 ### **ylims.ms.webapi (Main Web API)**
 
@@ -297,7 +297,7 @@ ylims.ms.webapi.repository/
 
 ---
 
-## 🔄 REQUEST/RESPONSE FLOW
+##  REQUEST/RESPONSE FLOW
 
 ```
 HTTP Request
@@ -323,7 +323,7 @@ HTTP Response
 
 ---
 
-## 📦 EXTERNAL DEPENDENCIES
+##  EXTERNAL DEPENDENCIES
 
 From `ylims.ms.webapi.csproj`:
 - **FluentValidation** (v11.5.1) - Validation framework
@@ -337,7 +337,7 @@ From `ylims.ms.webapi.csproj`:
 
 ---
 
-## 🎨 KEY ARCHITECTURAL PRINCIPLES APPLIED
+##  KEY ARCHITECTURAL PRINCIPLES APPLIED
 
 1. **Single Responsibility Principle (SRP)**
    - Each handler, service, and repository has one reason to change
@@ -362,7 +362,7 @@ From `ylims.ms.webapi.csproj`:
 
 ---
 
-## 🔐 SECURITY FEATURES OBSERVED
+##  SECURITY FEATURES OBSERVED
 
 - **Authorization:** `[AllowAnonymous]` and `[Authorize]` attributes on controllers
 - **CORS:** CORS configuration in Startup
@@ -371,7 +371,7 @@ From `ylims.ms.webapi.csproj`:
 
 ---
 
-## 📊 STATISTICS
+##  STATISTICS
 
 - **Controllers:** 15 total
 - **Handlers:** 40+ handlers (Commands + Queries)
@@ -383,7 +383,7 @@ From `ylims.ms.webapi.csproj`:
 
 ---
 
-## 💡 DESIGN PATTERN SUMMARY TABLE
+##  DESIGN PATTERN SUMMARY TABLE
 
 | Pattern | Location | Purpose | Benefits |
 |---------|----------|---------|----------|
@@ -401,7 +401,7 @@ From `ylims.ms.webapi.csproj`:
 
 ---
 
-## 🚀 KEY TECHNOLOGIES
+##  KEY TECHNOLOGIES
 
 - **Framework:** ASP.NET Core 6.0
 - **Language:** C#
@@ -413,7 +413,7 @@ From `ylims.ms.webapi.csproj`:
 
 ---
 
-## ✅ CONCLUSION
+##  CONCLUSION
 
 This is a well-architected, enterprise-grade ASP.NET Core Web API for a Laboratory Information Management System. It demonstrates:
 
