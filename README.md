@@ -1,4 +1,4 @@
-# YLIMS - Yodha Laboratory Information Management System (LIMS)
+# LIMS 
 ## Complete Project Architecture & Design Patterns Analysis
 
 ---
